@@ -885,7 +885,7 @@
         .mobile-menu {
             display: none;
             position: fixed;
-            top: 70px;
+            top: 60px;
             left: 0;
             width: 100%;
             background: rgba(0, 0, 0, 0.95);
@@ -1284,13 +1284,13 @@
         /* Responsive */
         @media (max-width: 768px) {
             .header {
-                padding: 12px 15px;
-                position: relative;
+                padding: 10px 15px;
+                position: fixed;
             }
 
             .header-content {
                 flex-direction: row;
-                gap: 12px;
+                gap: 10px;
                 align-items: center;
                 justify-content: space-between;
             }
@@ -1298,19 +1298,19 @@
             .logo-section {
                 flex-direction: row;
                 text-align: left;
-                gap: 12px;
+                gap: 10px;
                 align-items: center;
                 justify-content: flex-start;
             }
 
             .logo {
-                width: 45px;
-                height: 45px;
+                width: 40px;
+                height: 40px;
             }
 
             .college-name {
-                font-size: 0.85em;
-                line-height: 1.2;
+                font-size: 0.8em;
+                line-height: 1.1;
                 text-align: left;
             }
 
@@ -1325,8 +1325,8 @@
             }
 
             .hero {
-                padding: 90px 20px 40px;
-                min-height: 90vh;
+                padding: 70px 20px 40px;
+                min-height: 100vh;
             }
 
             .fest-badge {
@@ -1446,33 +1446,33 @@
 
         @media (max-width: 480px) {
             .header {
-                padding: 10px 12px;
+                padding: 8px 12px;
             }
 
             .logo-section {
-                gap: 10px;
+                gap: 8px;
             }
 
             .logo {
-                width: 40px;
-                height: 40px;
+                width: 35px;
+                height: 35px;
             }
 
             .college-name {
-                font-size: 0.75em;
+                font-size: 0.7em;
             }
 
-            .nav-menu {
-                gap: 6px;
+            .hamburger {
+                padding: 8px;
             }
 
-            .nav-btn {
-                padding: 6px 12px;
-                font-size: 0.75em;
+            .hamburger span {
+                width: 22px;
+                height: 2.5px;
             }
 
             .hero {
-                padding: 80px 15px 30px;
+                padding: 60px 15px 30px;
             }
 
             .main-title {
@@ -1521,21 +1521,29 @@
 
         @media (max-width: 360px) {
             .header {
-                padding: 8px 10px;
+                padding: 6px 10px;
             }
 
             .logo {
-                width: 35px;
-                height: 35px;
+                width: 32px;
+                height: 32px;
             }
 
             .college-name {
                 font-size: 0.65em;
             }
 
-            .nav-btn {
-                padding: 5px 10px;
-                font-size: 0.7em;
+            .hamburger {
+                padding: 6px;
+            }
+
+            .hamburger span {
+                width: 20px;
+                height: 2px;
+            }
+
+            .hero {
+                padding: 55px 15px 30px;
             }
 
             .main-title {
