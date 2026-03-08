@@ -1,0 +1,2102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHASWARA 2K26 - Epic Anime Tech Fest 🔥</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Bebas+Neue&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00D9FF;
+            --electric-purple: #9D00FF;
+            --neon-blue: #0066FF;
+            --neon-pink: #ff2e63;
+            --energy-yellow: #ffd60a;
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(10, 14, 39, 0.95);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #000;
+            color: white;
+            overflow-x: hidden;
+            cursor: default;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Cinematic Intro Overlay */
+        .intro-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            opacity: 1;
+            will-change: opacity, transform;
+            transition: opacity 1s ease-out, transform 1s ease-out;
+        }
+
+        .intro-overlay.fade-out {
+            opacity: 0;
+            transform: scale(1.05);
+            pointer-events: none;
+        }
+
+        /* Skip Intro Button */
+        .skip-intro-btn {
+            position: absolute;
+            top: 30px;
+            right: 30px;
+            padding: 12px 30px;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9em;
+            font-weight: 700;
+            cursor: pointer;
+            z-index: 10005;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .skip-intro-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: scale(1.05);
+        }
+
+        /* Enable Sound Button */
+        .enable-sound-btn {
+            position: absolute;
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 20px 50px;
+            background: rgba(255, 215, 0, 0.2);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 215, 0, 0.6);
+            border-radius: 60px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3em;
+            font-weight: 900;
+            cursor: pointer;
+            z-index: 10006;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: soundPulse 1.5s ease-in-out infinite;
+            box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
+        }
+
+        .enable-sound-btn:hover {
+            background: rgba(255, 215, 0, 0.3);
+            border-color: rgba(255, 215, 0, 0.9);
+            transform: translateX(-50%) scale(1.1);
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.6);
+        }
+
+        .enable-sound-btn.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        @keyframes soundPulse {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
+                transform: translateX(-50%) scale(1);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 215, 0, 0.7);
+                transform: translateX(-50%) scale(1.05);
+            }
+        }
+
+        /* Start Intro Button */
+        .start-intro-btn {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            padding: 25px 60px;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(20px);
+            border: 3px solid rgba(255, 255, 255, 0.5);
+            border-radius: 60px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.5em;
+            font-weight: 900;
+            cursor: pointer;
+            z-index: 10006;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            animation: pulseGlow 2s ease-in-out infinite;
+        }
+
+        .start-intro-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            border-color: rgba(255, 255, 255, 0.8);
+            transform: translate(-50%, -50%) scale(1.1);
+            box-shadow: 0 0 40px rgba(255, 255, 255, 0.5);
+        }
+
+        .start-intro-btn.hidden {
+            display: none;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+            }
+            50% {
+                box-shadow: 0 0 40px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        /* Video Player */
+        .intro-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        .intro-video.shattering {
+            opacity: 0;
+        }
+
+        /* Glass Break Canvas */
+        .glass-break-canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 2;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .glass-break-canvas.active {
+            opacity: 1;
+        }
+
+        /* Spotlight Container */
+        .spotlight-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            z-index: 3;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .spotlight-container.active {
+            opacity: 1;
+        }
+
+        /* Anime Eyes GIF Background */
+        .anime-eyes-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            will-change: opacity;
+            transition: opacity 1s ease-out;
+        }
+
+        .anime-eyes-bg.active {
+            opacity: 1;
+        }
+
+        .eyes-gif {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            filter: brightness(1.2) contrast(1.3) saturate(1.5);
+            will-change: auto;
+        }
+
+        /* Add red glow overlay for more intensity */
+        .anime-eyes-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, 
+                transparent 0%, 
+                rgba(255, 0, 0, 0.1) 40%,
+                rgba(255, 0, 0, 0.2) 70%,
+                rgba(0, 0, 0, 0.3) 100%);
+            pointer-events: none;
+            will-change: opacity;
+            transition: opacity 3s ease-in-out;
+            opacity: 0.6;
+        }
+
+        .anime-eyes-bg.active::after {
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        /* Spotlight Circle - Hidden */
+        .spotlight-circle {
+            display: none;
+        }
+
+        /* Spotlight Content */
+        .spotlight-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            opacity: 0;
+            will-change: opacity, transform;
+            animation: contentReveal 1.5s ease-out 3s forwards;
+        }
+
+        @keyframes contentReveal {
+            0% {
+                opacity: 0;
+                transform: scale(0.5) translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+
+        .spotlight-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 7em;
+            font-weight: 900;
+            color: white;
+            text-shadow: 
+                0 0 50px rgba(255, 0, 0, 0.9),
+                0 0 100px rgba(255, 0, 0, 0.7),
+                0 0 150px rgba(255, 0, 0, 0.5),
+                0 4px 30px rgba(0, 0, 0, 1);
+            letter-spacing: 12px;
+            margin-bottom: 20px;
+            animation: titleRevealGrow 1.5s ease-out forwards, titleRedGlow 2s ease-in-out 1.5s infinite;
+            transform-origin: center;
+            will-change: transform, opacity;
+        }
+
+        @keyframes titleRevealGrow {
+            0% {
+                transform: scale(0.5);
+                opacity: 0;
+            }
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        @keyframes titleRedGlow {
+            0%, 100% {
+                text-shadow: 
+                    0 0 50px rgba(255, 0, 0, 0.9),
+                    0 0 100px rgba(255, 0, 0, 0.7),
+                    0 0 150px rgba(255, 0, 0, 0.5),
+                    0 4px 30px rgba(0, 0, 0, 1);
+            }
+            50% {
+                text-shadow: 
+                    0 0 70px rgba(255, 0, 0, 1),
+                    0 0 140px rgba(255, 0, 0, 0.9),
+                    0 0 210px rgba(255, 0, 0, 0.7),
+                    0 4px 30px rgba(0, 0, 0, 1);
+            }
+        }
+
+        .spotlight-subtitle {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8em;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.95);
+            text-shadow: 
+                0 0 20px rgba(255, 255, 255, 0.6),
+                0 2px 20px rgba(0, 0, 0, 1);
+            letter-spacing: 3px;
+            animation: subtitleFadeIn 1.2s ease-out 0.8s forwards;
+            opacity: 0;
+            will-change: opacity, transform;
+        }
+
+        @keyframes subtitleFadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Anime-style energy particles */
+        .energy-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            background: radial-gradient(circle, rgba(255, 0, 0, 1) 0%, rgba(255, 100, 100, 0.6) 50%, transparent 100%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 15;
+            will-change: transform, opacity;
+            animation: particleFloat 2s ease-out forwards;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                opacity: 1;
+                transform: translate(0, 0) scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: translate(var(--tx), var(--ty)) scale(0.3);
+            }
+        }
+
+        /* Anime impact lines */
+        .impact-line {
+            position: absolute;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, rgba(255, 0, 0, 0.8), transparent);
+            pointer-events: none;
+            z-index: 14;
+            will-change: transform, opacity;
+            animation: impactExpand 0.6s ease-out forwards;
+            transform-origin: center;
+        }
+
+        @keyframes impactExpand {
+            0% {
+                width: 0;
+                opacity: 1;
+            }
+            100% {
+                width: 300px;
+                opacity: 0;
+            }
+        }
+
+        /* Menacing Tiger Eyes in Background */
+        .tiger-eyes-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 5;
+            opacity: 1;
+            pointer-events: none;
+        }
+
+        /* Giant Eye - Left and Right */
+        .giant-eye {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 300px;
+            height: 180px;
+            z-index: 5;
+        }
+
+        .giant-eye.left {
+            left: 25%;
+        }
+
+        .giant-eye.right {
+            right: 25%;
+        }
+
+        /* Eye Opening Animation - Slower and Smoother */
+        .eye-lid-top,
+        .eye-lid-bottom {
+            position: absolute;
+            width: 100%;
+            height: 50%;
+            background: #000;
+            overflow: hidden;
+            z-index: 10;
+        }
+
+        .eye-lid-top {
+            top: 0;
+            border-radius: 50% 50% 0 0 / 100% 100% 0 0;
+            animation: eyeLidTopOpen 3s ease-in-out 0.5s forwards;
+            transform-origin: bottom;
+        }
+
+        .eye-lid-bottom {
+            bottom: 0;
+            border-radius: 0 0 50% 50% / 0 0 100% 100%;
+            animation: eyeLidBottomOpen 3s ease-in-out 0.5s forwards;
+            transform-origin: top;
+        }
+
+        @keyframes eyeLidTopOpen {
+            0% {
+                transform: scaleY(1) translateY(0);
+            }
+            100% {
+                transform: scaleY(0.01) translateY(-100%);
+            }
+        }
+
+        @keyframes eyeLidBottomOpen {
+            0% {
+                transform: scaleY(1) translateY(0);
+            }
+            100% {
+                transform: scaleY(0.01) translateY(100%);
+            }
+        }
+
+        /* Eye Base */
+        .giant-eye-base {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(ellipse, rgba(30, 0, 0, 1) 0%, rgba(15, 0, 0, 0.95) 50%, rgba(5, 0, 0, 0.8) 100%);
+            border-radius: 50%;
+            box-shadow: 
+                inset 0 0 40px rgba(0, 0, 0, 0.9),
+                0 0 60px rgba(255, 0, 0, 0.5),
+                0 0 100px rgba(255, 0, 0, 0.3);
+        }
+
+        /* Glowing Iris */
+        .giant-iris {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 140px;
+            height: 140px;
+            background: radial-gradient(circle, 
+                rgba(255, 50, 0, 1) 0%, 
+                rgba(255, 0, 0, 0.95) 25%,
+                rgba(180, 0, 0, 0.9) 50%,
+                rgba(120, 0, 0, 0.7) 75%,
+                rgba(60, 0, 0, 0.4) 90%,
+                transparent 100%);
+            border-radius: 50%;
+            animation: irisGlow 3s ease-in-out 1s infinite, irisPulse 4s ease-in-out 1s infinite;
+            box-shadow: 
+                0 0 50px rgba(255, 0, 0, 1),
+                0 0 100px rgba(255, 0, 0, 0.8),
+                0 0 150px rgba(255, 0, 0, 0.5),
+                inset 0 0 40px rgba(255, 80, 0, 0.8);
+        }
+
+        @keyframes irisGlow {
+            0%, 100% {
+                box-shadow: 
+                    0 0 40px rgba(255, 0, 0, 1),
+                    0 0 80px rgba(255, 0, 0, 0.8),
+                    0 0 120px rgba(255, 0, 0, 0.6),
+                    inset 0 0 30px rgba(255, 50, 0, 0.9);
+            }
+            50% {
+                box-shadow: 
+                    0 0 60px rgba(255, 0, 0, 1),
+                    0 0 120px rgba(255, 0, 0, 1),
+                    0 0 180px rgba(255, 0, 0, 0.8),
+                    inset 0 0 50px rgba(255, 100, 0, 1);
+            }
+        }
+
+        @keyframes irisPulse {
+            0%, 100% {
+                transform: translate(-50%, -50%) scale(1);
+            }
+            50% {
+                transform: translate(-50%, -50%) scale(1.1);
+            }
+        }
+
+        /* Vertical Slit Pupil */
+        .giant-pupil {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 18px;
+            height: 100px;
+            background: linear-gradient(180deg, 
+                rgba(0, 0, 0, 1) 0%, 
+                rgba(5, 0, 0, 1) 50%,
+                rgba(0, 0, 0, 1) 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: pupilDilate 5s ease-in-out 1.5s infinite;
+            box-shadow: 
+                0 0 15px rgba(0, 0, 0, 1),
+                inset 0 0 8px rgba(0, 0, 0, 1);
+        }
+
+        @keyframes pupilDilate {
+            0%, 100% {
+                height: 100px;
+                width: 18px;
+            }
+            50% {
+                height: 110px;
+                width: 20px;
+            }
+        }
+
+        /* Eye Veins */
+        .eye-vein {
+            position: absolute;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(150, 0, 0, 0.6), transparent);
+            transform-origin: left;
+            animation: veinPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes veinPulse {
+            0%, 100% {
+                opacity: 0.4;
+            }
+            50% {
+                opacity: 0.8;
+            }
+        }
+
+        /* Massive Dark Aura - Removed for pure black background */
+        .giant-aura {
+            display: none;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 768px) {
+            .giant-eye {
+                width: 200px;
+                height: 120px;
+            }
+
+            .giant-eye.left {
+                left: 15%;
+            }
+
+            .giant-eye.right {
+                right: 15%;
+            }
+            
+            .giant-iris {
+                width: 90px;
+                height: 90px;
+            }
+            
+            .giant-pupil {
+                width: 14px;
+                height: 70px;
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .skip-intro-btn {
+                top: 15px;
+                right: 15px;
+                padding: 8px 20px;
+                font-size: 0.75em;
+            }
+
+            .spotlight-circle {
+                width: 300px;
+                height: 300px;
+            }
+
+            .spotlight-title {
+                font-size: 3.5em;
+                letter-spacing: 6px;
+            }
+
+            .spotlight-subtitle {
+                font-size: 1.2em;
+                letter-spacing: 2px;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .spotlight-title {
+                font-size: 2.5em;
+                letter-spacing: 4px;
+            }
+
+            .spotlight-subtitle {
+                font-size: 1em;
+            }
+        }
+
+        /* INSANE Background Effects - Pre-rendered */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+            will-change: auto;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            object-fit: cover;
+            opacity: 1;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .bg-image {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-position: center;
+                will-change: auto;
+                transition: none;
+            }
+        }
+
+        /* Light dark overlay for text readability */
+        .bg-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        /* Animated Scanlines - Removed */
+        .scanlines {
+            display: none;
+        }
+
+        /* Glitch Effect Overlay - Removed */
+        .glitch-overlay {
+            display: none;
+        }
+
+        /* Cyber Grid - Removed */
+        .cyber-grid {
+            display: none;
+        }
+
+        /* Floating Orbs - Removed */
+        .orb {
+            display: none;
+        }
+
+        /* Lightning Bolts - Removed */
+        .lightning {
+            display: none;
+        }
+
+        /* Main Container - Pre-rendered behind intro */
+        .container {
+            position: relative;
+            z-index: 2;
+            opacity: 1;
+            will-change: auto;
+        }
+
+        /* EPIC Header */
+        /* ANIME POSTER Header */
+        .header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 5px;
+            background: white;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .college-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.3em;
+            font-weight: 900;
+            color: white;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 15px;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 700;
+            text-decoration: none;
+            text-transform: uppercase;
+            border-radius: 8px;
+            transition: all 0.3s;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* MEGA HERO SECTION */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            padding: 120px 40px 60px;
+            overflow: hidden;
+            perspective: 1000px;
+        }
+
+        .hero-bg-anime {
+            display: none;
+        }
+
+        .hero::after {
+            display: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 1200px;
+            will-change: transform;
+        }
+
+        .fest-badge {
+            display: inline-block;
+            padding: 15px 40px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 1.3em;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .main-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 10em;
+            font-weight: 900;
+            line-height: 0.9;
+            margin: 30px 0;
+            position: relative;
+            will-change: transform;
+        }
+
+        .main-title.glow-active {
+            text-shadow: 
+                0 0 30px rgba(255, 255, 255, 1),
+                0 0 60px rgba(255, 255, 255, 0.8),
+                0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .main-title::before {
+            display: none;
+        }
+
+        .title-text {
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8),
+                         0 2px 4px rgba(0, 0, 0, 0.5);
+            position: relative;
+            z-index: 1;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes titleGlitch {
+            0%, 90%, 100% { transform: translate(0); }
+            92% { transform: translate(-5px, 2px); }
+            94% { transform: translate(5px, -2px); }
+            96% { transform: translate(-2px, 3px); }
+        }
+
+        .year-tag {
+            font-size: 0.3em;
+            color: white;
+            vertical-align: super;
+            animation: yearPulse 2s infinite;
+        }
+
+        @keyframes yearPulse {
+            0%, 100% { 
+                opacity: 1;
+                text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+            }
+            50% { 
+                opacity: 0.7;
+                text-shadow: 0 0 30px rgba(255, 255, 255, 0.6);
+            }
+        }
+
+        .subtitle {
+            font-size: 2em;
+            font-weight: 700;
+            margin: 20px 0;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+        }
+
+        .dept-badge {
+            display: inline-block;
+            padding: 20px 50px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            font-size: 1.5em;
+            font-weight: 900;
+            margin-top: 30px;
+            text-transform: uppercase;
+        }
+
+        /* Energy Rings - Removed */
+        .energy-ring {
+            display: none;
+        }
+
+        /* INSANE EVENTS SECTION */
+        .events-section {
+            padding: 100px 40px;
+            position: relative;
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 5em;
+            text-align: center;
+            margin-bottom: 80px;
+            color: white;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+        }
+
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .event-card {
+            position: relative;
+            background: rgba(10, 14, 39, 0.8);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 20px;
+            padding: 40px;
+            text-decoration: none;
+            color: white;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            backdrop-filter: blur(5px);
+            -webkit-tap-highlight-color: transparent;
+            will-change: transform;
+        }
+
+        .event-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, 
+                transparent 30%, 
+                rgba(0, 255, 255, 0.1) 50%, 
+                transparent 70%);
+            animation: cardShine 3s infinite;
+        }
+
+        @keyframes cardShine {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .event-card:hover {
+            transform: translateY(-15px) scale(1.03);
+            box-shadow: 0 25px 60px rgba(0, 217, 255, 0.5);
+        }
+
+        .event-icon {
+            font-size: 5em;
+            display: block;
+            margin-bottom: 20px;
+            transition: transform 0.3s ease;
+        }
+
+        .event-card:hover .event-icon {
+            transform: scale(1.1);
+        }
+
+        .event-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8em;
+            font-weight: 900;
+            margin-bottom: 15px;
+            color: white;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-desc {
+            font-size: 1.1em;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-arrow {
+            position: absolute;
+            bottom: 30px;
+            right: 30px;
+            font-size: 3em;
+            color: rgba(255, 255, 255, 0.6);
+            transition: all 0.3s;
+            z-index: 1;
+        }
+
+        .event-card:hover .event-arrow {
+            transform: translateX(10px);
+            color: white;
+        }
+
+        /* Glassmorphism Event Cards - Uniform Style */
+        .event-card:nth-child(1),
+        .event-card:nth-child(2),
+        .event-card:nth-child(3),
+        .event-card:nth-child(4),
+        .event-card:nth-child(5) { 
+            border-color: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.6);
+        }
+        
+        .event-card:nth-child(1):hover,
+        .event-card:nth-child(2):hover,
+        .event-card:nth-child(3):hover,
+        .event-card:nth-child(4):hover,
+        .event-card:nth-child(5):hover { 
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        /* ANIME POSTER Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            display: none;
+        }
+
+        .footer-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3em;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .footer-text {
+            font-size: 1.3em;
+            margin: 15px 0;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .footer-highlight {
+            color: white;
+            font-weight: 900;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .social-icon {
+            width: 70px;
+            height: 70px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2em;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .social-icon:hover {
+            background: rgba(255, 255, 255, 0.15);
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                padding: 12px 15px;
+                position: relative;
+            }
+
+            .header-content {
+                flex-direction: column;
+                gap: 12px;
+                align-items: center;
+            }
+
+            .logo-section {
+                flex-direction: row;
+                text-align: center;
+                gap: 12px;
+                align-items: center;
+                justify-content: center;
+            }
+
+            .logo {
+                width: 45px;
+                height: 45px;
+            }
+
+            .college-name {
+                font-size: 0.85em;
+                line-height: 1.2;
+                text-align: left;
+            }
+
+            .nav-menu {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px;
+                width: 100%;
+            }
+
+            .nav-btn {
+                padding: 8px 16px;
+                font-size: 0.8em;
+                flex: 0 1 auto;
+            }
+
+            .hero {
+                padding: 90px 20px 40px;
+                min-height: 90vh;
+            }
+
+            .fest-badge {
+                padding: 8px 15px;
+                font-size: 0.75em;
+                letter-spacing: 0.5px;
+                line-height: 1.4;
+            }
+
+            .main-title {
+                font-size: 3.5em;
+                margin: 20px 0;
+            }
+
+            .year-tag {
+                font-size: 0.35em;
+            }
+
+            .subtitle {
+                font-size: 1.1em;
+                margin: 15px 0;
+            }
+
+            .dept-badge {
+                padding: 10px 20px;
+                font-size: 0.9em;
+                margin-top: 20px;
+            }
+
+            .events-section {
+                padding: 60px 20px;
+            }
+
+            .section-title {
+                font-size: 2.5em;
+                margin-bottom: 40px;
+                letter-spacing: 2px;
+            }
+
+            .events-grid {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .event-card {
+                padding: 30px 25px;
+            }
+
+            .event-card:hover {
+                transform: translateY(-10px) scale(1.02);
+            }
+
+            .event-icon {
+                font-size: 3.5em;
+                margin-bottom: 15px;
+            }
+
+            .event-title {
+                font-size: 1.4em;
+                margin-bottom: 12px;
+            }
+
+            .event-desc {
+                font-size: 1em;
+                line-height: 1.5;
+            }
+
+            .event-arrow {
+                font-size: 2em;
+                bottom: 20px;
+                right: 20px;
+            }
+
+            .footer {
+                padding: 40px 20px;
+            }
+
+            .footer-title {
+                font-size: 2em;
+            }
+
+            .footer-text {
+                font-size: 1em;
+                margin: 10px 0;
+            }
+
+            .social-links {
+                gap: 20px;
+                margin: 30px 0;
+            }
+
+            .social-icon {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5em;
+            }
+
+            /* Mobile intro optimizations */
+            .skip-intro-btn {
+                top: 10px;
+                right: 10px;
+                padding: 6px 15px;
+                font-size: 0.7em;
+            }
+
+            .spotlight-title {
+                font-size: 3em;
+                letter-spacing: 4px;
+            }
+
+            .spotlight-subtitle {
+                font-size: 1em;
+                letter-spacing: 1px;
+                padding: 0 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header {
+                padding: 10px 12px;
+            }
+
+            .logo-section {
+                gap: 10px;
+            }
+
+            .logo {
+                width: 40px;
+                height: 40px;
+            }
+
+            .college-name {
+                font-size: 0.75em;
+            }
+
+            .nav-menu {
+                gap: 6px;
+            }
+
+            .nav-btn {
+                padding: 6px 12px;
+                font-size: 0.75em;
+            }
+
+            .hero {
+                padding: 80px 15px 30px;
+            }
+
+            .main-title {
+                font-size: 2.8em;
+            }
+
+            .fest-badge {
+                font-size: 0.65em;
+                padding: 6px 12px;
+            }
+
+            .subtitle {
+                font-size: 0.95em;
+            }
+
+            .dept-badge {
+                font-size: 0.8em;
+                padding: 8px 16px;
+            }
+
+            .section-title {
+                font-size: 2em;
+            }
+
+            .event-card {
+                padding: 25px 20px;
+            }
+
+            .event-title {
+                font-size: 1.2em;
+            }
+
+            .event-desc {
+                font-size: 0.95em;
+            }
+
+            .spotlight-title {
+                font-size: 2.2em;
+                letter-spacing: 2px;
+            }
+
+            .spotlight-subtitle {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .header {
+                padding: 8px 10px;
+            }
+
+            .logo {
+                width: 35px;
+                height: 35px;
+            }
+
+            .college-name {
+                font-size: 0.65em;
+            }
+
+            .nav-btn {
+                padding: 5px 10px;
+                font-size: 0.7em;
+            }
+
+            .main-title {
+                font-size: 2.4em;
+            }
+
+            .fest-badge {
+                font-size: 0.6em;
+                padding: 5px 10px;
+            }
+
+            .subtitle {
+                font-size: 0.85em;
+            }
+
+            .dept-badge {
+                font-size: 0.75em;
+                padding: 6px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Cinematic Intro Sequence -->
+    <div class="intro-overlay" id="introOverlay">
+        <!-- Skip Button -->
+        <button class="skip-intro-btn" id="skipIntroBtn">Skip Intro →</button>
+        
+        <!-- Video Player - intro.mp4 (autoplay muted, video has its own audio track) -->
+        <video class="intro-video" id="introVideo" autoplay muted playsinline>
+            <source src="intro.mp4" type="video/mp4">
+        </video>
+        
+        <!-- Intro Sound (sword slash) -->
+        <audio id="introSound" src="intro.mp3" preload="auto"></audio>
+        
+        <!-- Glass Breaking Sound -->
+        <audio id="glassSound" src="glass.mp3" preload="auto"></audio>
+        
+        <!-- Glass Break Effect -->
+        <canvas class="glass-break-canvas" id="glassCanvas"></canvas>
+        
+        <!-- Spotlight Reveal -->
+        <div class="spotlight-container" id="spotlightContainer">
+            
+            <!-- Anime Eye Opening GIF Background -->
+            <div class="anime-eyes-bg" id="animeEyesBg">
+                <img src="eyes.gif" 
+                     alt="Anime Eyes Opening" 
+                     class="eyes-gif">
+            </div>
+            
+            <div class="spotlight-content">
+                <div class="spotlight-title">BHASWARA 2K26</div>
+                <div class="spotlight-subtitle">Department of CSE (AIML) & IoT</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- INSANE Background Effects -->
+    <div class="bg-wrapper">
+        <img src="background.jpeg" class="bg-image" alt="Anime Background">
+        <div class="scanlines"></div>
+        <div class="glitch-overlay"></div>
+        <div class="cyber-grid"></div>
+        <div id="orbs"></div>
+        <div id="lightning"></div>
+    </div>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Epic Header -->
+        <header class="header">
+            <div class="header-content">
+                <div class="logo-section">
+                    <img src="logo.png" alt="GCET" class="logo" 
+                         onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%2300ffff%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2235%22 fill=%22%23000%22 font-weight=%22bold%22%3EGCET%3C/text%3E%3C/svg%3E'">
+                    <div>
+                        <div class="college-name">GCET</div>
+                        <div style="font-size: 0.8em; color: var(--neon-cyan);">Hyderabad</div>
+                    </div>
+                </div>
+                <nav class="nav-menu">
+                    <a href="#home" class="nav-btn">Home</a>
+                    <a href="#events" class="nav-btn">Events</a>
+                    <a href="registration.html" class="nav-btn">Register</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- MEGA HERO SECTION -->
+        <section class="hero" id="home">
+            <div class="hero-bg-anime"></div>
+            <div class="hero-content">
+                <div class="fest-badge">
+                    🎌 19th National Level Technical and Management Fest 🎌
+                </div>
+                <h1 class="main-title">
+                    <div class="title-aura"></div>
+                    <span class="title-text">BHASWARA<span class="year-tag">2K26</span></span>
+                </h1>
+                <p class="subtitle">⚡ WHERE INNOVATION MEETS IMAGINATION ⚡</p>
+                <div class="dept-badge">
+                    🤖 AIML DEPARTMENT 🤖
+                </div>
+                <div class="energy-ring" style="top: 50%; left: 50%; transform: translate(-50%, -50%);"></div>
+                <div class="energy-ring" style="top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 1s;"></div>
+                <div class="energy-ring" style="top: 50%; left: 50%; transform: translate(-50%, -50%); animation-delay: 2s;"></div>
+            </div>
+        </section>
+
+        <!-- INSANE EVENTS SECTION -->
+        <section class="events-section" id="events">
+            <h2 class="section-title">⚡ EPIC EVENTS ⚡</h2>
+            <div class="events-grid">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScKRQWKH_WeVVInKmSZdzqcSEMAV09XcwghOTJTIglr8qo6Xw/viewform" target="_blank" class="event-card">
+                    <span class="event-icon">🎨</span>
+                    <h3 class="event-title">Poster Presentation</h3>
+                    <p class="event-desc">Unleash your creativity and showcase groundbreaking research through stunning visual storytelling!</p>
+                    <span class="event-arrow">→</span>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWZoRWV9Rpeev4DUwbD-tsCrt73TD1I7x4NTdM7U_fTXfzvA/viewform?usp=header" target="_blank" class="event-card">
+                    <span class="event-icon">⚖️</span>
+                    <h3 class="event-title">The Digital Verdict</h3>
+                    <p class="event-desc">Battle in epic tech debates! Prove your technical supremacy and dominate the digital arena!</p>
+                    <span class="event-arrow">→</span>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXVNniwQLei16AZtEOur-dotu3qbXFgfIgmR7GtBBBLHdvxA/viewform?usp=publish-editor" target="_blank" class="event-card">
+                    <span class="event-icon">👻</span>
+                    <h3 class="event-title">The Phantom Protocol</h3>
+                    <p class="event-desc">Code Edition - Crack mysterious algorithms and conquer impossible coding challenges!</p>
+                    <span class="event-arrow">→</span>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-R-ThzutnEu8zIe8dEdLDe53HAmC7iLG4dIg81GIzBfZPjA/viewform?usp=publish-editor" target="_blank" class="event-card">
+                    <span class="event-icon">🧠</span>
+                    <h3 class="event-title">The Breakout Trilogy</h3>
+                    <p class="event-desc">Push your brain to the limit! Solve mind-bending puzzles in this ultimate mental showdown!</p>
+                    <span class="event-arrow">→</span>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfkiwIFmKty5aEExPbh6KqkwIQ7mb3Jou2uhuQIcqb5KaXogQ/viewform?usp=publish-editor" target="_blank" class="event-card">
+                    <span class="event-icon">🔍</span>
+                    <h3 class="event-title">Mysteria: Ultimate Crime Hunt</h3>
+                    <p class="event-desc">Become a detective! Unravel dark mysteries and solve the crime of the century!</p>
+                    <span class="event-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- EPIC FOOTER -->
+        <footer class="footer">
+            <div class="footer-content">
+                <h3 class="footer-title">BHASWARA 2K26</h3>
+                <p class="footer-text">
+                    <span class="footer-highlight">Department of Artificial Intelligence & Machine Learning</span>
+                </p>
+                <p class="footer-text">
+                    <strong>Geethanjali College of Engineering and Technology</strong>
+                </p>
+                <p class="footer-text">
+                    Keesara Mandal, Cheeryal Village, Hyderabad, Telangana
+                </p>
+
+                <p style="margin-top: 30px; color: rgba(255,255,255,0.5); font-size: 0.9em;">
+                    © 2026 BHASWARA 2K26 | All Rights Reserved | GCET AIML
+                </p>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Cinematic Intro with Perfect Synchronization - AUTOPLAY VERSION
+        window.addEventListener('load', () => {
+            const introOverlay = document.getElementById('introOverlay');
+            const introVideo = document.getElementById('introVideo');
+            const skipBtn = document.getElementById('skipIntroBtn');
+            const glassCanvas = document.getElementById('glassCanvas');
+            const spotlightContainer = document.getElementById('spotlightContainer');
+            const animeEyesBg = document.getElementById('animeEyesBg');
+            const introSound = document.getElementById('introSound');
+            const glassSound = document.getElementById('glassSound');
+            
+            let glassBreakTriggered = false;
+            let soundPlayed = false;
+            let tempCanvas = null;
+            const isMobile = window.innerWidth <= 768;
+
+            console.log('🎬 Intro script loaded');
+            console.log('Elements:', { video: !!introVideo, canvas: !!glassCanvas, introSound: !!introSound, glassSound: !!glassSound });
+
+            // Pre-render main website (it's already loaded in the background)
+            // The intro overlay sits on top with z-index: 10000
+
+            // Setup video timeline monitoring
+            if (introVideo) {
+                introVideo.addEventListener('timeupdate', () => {
+                    const t = introVideo.currentTime;
+                    
+                    // At 3 seconds: Play intro sound (sword slash) and glass sound simultaneously
+                    if (t >= 3.0 && !soundPlayed) {
+                        soundPlayed = true;
+                        console.log('⏱️ 3s: Playing intro sound and glass sound');
+                        
+                        // Play intro sound (sword slash)
+                        if (introSound) {
+                            introSound.volume = 1.0;
+                            introSound.play().then(() => {
+                                console.log('✅ Intro sound (sword slash) playing');
+                            }).catch(err => {
+                                console.warn('⚠️ Intro sound blocked:', err.name);
+                            });
+                        }
+                        
+                        // Play glass sound simultaneously
+                        if (glassSound) {
+                            glassSound.volume = 1.0;
+                            glassSound.play().then(() => {
+                                console.log('✅ Glass sound playing');
+                            }).catch(err => {
+                                console.warn('⚠️ Glass sound blocked:', err.name);
+                            });
+                        }
+                    }
+                    
+                    // At 4 seconds: Trigger glass break animation
+                    if (t >= 4.0 && !glassBreakTriggered) {
+                        console.log('⏱️ 4s: Triggering glass break');
+                        triggerGlassBreak();
+                    }
+                });
+
+                // Video loaded
+                introVideo.addEventListener('loadeddata', () => {
+                    console.log('✅ Video loaded, duration:', introVideo.duration + 's');
+                });
+
+                // Video playing
+                introVideo.addEventListener('playing', () => {
+                    console.log('▶️ Video playing');
+                });
+            }
+
+            // Glass Break Animation
+            function triggerGlassBreak() {
+                if (glassBreakTriggered) return;
+                glassBreakTriggered = true;
+
+                console.log('💥 Starting glass break sequence');
+
+                // Pause video
+                introVideo.pause();
+                
+                const ctx = glassCanvas.getContext('2d');
+                const width = window.innerWidth;
+                const height = window.innerHeight;
+                glassCanvas.width = width;
+                glassCanvas.height = height;
+
+                // Capture video frame
+                tempCanvas = document.createElement('canvas');
+                tempCanvas.width = width;
+                tempCanvas.height = height;
+                const tempCtx = tempCanvas.getContext('2d');
+                tempCtx.drawImage(introVideo, 0, 0, width, height);
+                const videoFrame = tempCtx.getImageData(0, 0, width, height);
+                
+                // Show canvas, hide video
+                glassCanvas.classList.add('active');
+                introVideo.classList.add('shattering');
+
+                const centerX = width / 2;
+                const centerY = height / 2;
+
+                // Start animation sequence
+                drawLightningCrack();
+
+                function drawLightningCrack() {
+                    console.log('⚡ Lightning crack');
+                    ctx.putImageData(videoFrame, 0, 0);
+                    
+                    ctx.strokeStyle = 'rgba(255, 255, 255, 1)';
+                    ctx.lineWidth = 3;
+                    ctx.shadowColor = 'rgba(255, 255, 255, 0.8)';
+                    ctx.shadowBlur = 10;
+                    
+                    ctx.beginPath();
+                    ctx.moveTo(0, height * 0.3);
+                    
+                    const segments = 15;
+                    for (let i = 0; i < segments; i++) {
+                        const x = (width / segments) * i + (Math.random() - 0.5) * 100;
+                        const y = height * 0.3 + (Math.random() - 0.5) * 200;
+                        ctx.lineTo(x, y);
+                    }
+                    ctx.lineTo(width, height * 0.7);
+                    ctx.stroke();
+                    
+                    setTimeout(() => drawBranchingCracks(), 200);
+                }
+
+                function drawBranchingCracks() {
+                    console.log('🌿 Branching cracks');
+                    const crackLines = [];
+                    const numMainCracks = isMobile ? 8 : 12;
+
+                    for (let i = 0; i < numMainCracks; i++) {
+                        const angle = (Math.PI * 2 * i) / numMainCracks + (Math.random() - 0.5) * 0.5;
+                        const mainBranch = [];
+                        
+                        let x = centerX;
+                        let y = centerY;
+                        const length = Math.max(width, height) * 0.7;
+                        const segments = isMobile ? 8 : 12;
+                        
+                        for (let j = 0; j < segments; j++) {
+                            const segmentLength = length / segments;
+                            const deviation = (Math.random() - 0.5) * 60;
+                            x += Math.cos(angle) * segmentLength + deviation;
+                            y += Math.sin(angle) * segmentLength + deviation;
+                            mainBranch.push({ x, y });
+                            
+                            if (j > 2 && Math.random() > 0.6) {
+                                const subBranch = [];
+                                const subAngle = angle + (Math.random() - 0.5) * Math.PI / 2;
+                                let sx = x;
+                                let sy = y;
+                                const subLength = length * 0.3;
+                                const subSegments = 4;
+                                
+                                for (let k = 0; k < subSegments; k++) {
+                                    sx += Math.cos(subAngle) * (subLength / subSegments);
+                                    sy += Math.sin(subAngle) * (subLength / subSegments);
+                                    subBranch.push({ x: sx, y: sy });
+                                }
+                                crackLines.push({ start: { x, y }, segments: subBranch });
+                            }
+                        }
+                        
+                        crackLines.push({ start: { x: centerX, y: centerY }, segments: mainBranch });
+                    }
+
+                    let crackProgress = 0;
+                    function animateCracks() {
+                        ctx.putImageData(videoFrame, 0, 0);
+                        
+                        ctx.strokeStyle = 'rgba(255, 255, 255, 0.9)';
+                        ctx.lineWidth = isMobile ? 1.5 : 2;
+                        ctx.shadowColor = 'rgba(255, 255, 255, 0.6)';
+                        ctx.shadowBlur = isMobile ? 4 : 6;
+                        
+                        crackLines.forEach(crack => {
+                            ctx.beginPath();
+                            ctx.moveTo(crack.start.x, crack.start.y);
+                            
+                            const visibleSegments = Math.floor(crack.segments.length * crackProgress);
+                            for (let i = 0; i < visibleSegments; i++) {
+                                ctx.lineTo(crack.segments[i].x, crack.segments[i].y);
+                            }
+                            ctx.stroke();
+                        });
+                        
+                        crackProgress += 0.15;
+                        
+                        if (crackProgress < 1) {
+                            requestAnimationFrame(animateCracks);
+                        } else {
+                            setTimeout(() => shatterGlass(videoFrame), 100);
+                        }
+                    }
+
+                    animateCracks();
+                }
+
+                function shatterGlass(videoFrame) {
+                    console.log('💎 Glass shattering');
+                    const fragments = [];
+                    const fragmentCount = isMobile ? 10 : 18;
+                    
+                    for (let i = 0; i < fragmentCount; i++) {
+                        const angle = (Math.PI * 2 * i) / fragmentCount + (Math.random() - 0.5) * 0.4;
+                        const distance = Math.random() * (isMobile ? 80 : 120) + (isMobile ? 40 : 60);
+                        const fx = centerX + Math.cos(angle) * distance;
+                        const fy = centerY + Math.sin(angle) * distance;
+                        
+                        const vertices = [];
+                        const sides = 5 + Math.floor(Math.random() * 2);
+                        const size = Math.random() * (isMobile ? 80 : 120) + (isMobile ? 60 : 80);
+                        
+                        for (let j = 0; j < sides; j++) {
+                            const vAngle = (Math.PI * 2 * j) / sides + Math.random() * 0.6;
+                            const vDist = size * (0.6 + Math.random() * 0.4);
+                            vertices.push({
+                                x: Math.cos(vAngle) * vDist,
+                                y: Math.sin(vAngle) * vDist
+                            });
+                        }
+                        
+                        const depth = Math.random();
+                        const speedMultiplier = 0.5 + depth * 1.5;
+                        
+                        fragments.push({
+                            x: fx,
+                            y: fy,
+                            vertices: vertices,
+                            vx: (fx - centerX) / (isMobile ? 30 : 40) * speedMultiplier + (Math.random() - 0.5) * 3,
+                            vy: (fy - centerY) / (isMobile ? 30 : 40) * speedMultiplier + (Math.random() - 0.5) * 3,
+                            rotation: Math.random() * Math.PI * 2,
+                            rotationSpeed: (Math.random() - 0.5) * (isMobile ? 0.12 : 0.18),
+                            opacity: 1,
+                            depth: depth,
+                            scale: 0.8 + depth * 0.4
+                        });
+                    }
+
+                    let animationId;
+                    function animateFragments() {
+                        ctx.clearRect(0, 0, width, height);
+                        
+                        let allGone = true;
+                        fragments.sort((a, b) => a.depth - b.depth);
+                        
+                        fragments.forEach(frag => {
+                            if (frag.opacity > 0) {
+                                allGone = false;
+                                
+                                frag.x += frag.vx;
+                                frag.y += frag.vy;
+                                frag.vy += (isMobile ? 0.6 : 0.5) * frag.scale;
+                                frag.rotation += frag.rotationSpeed;
+                                frag.opacity -= isMobile ? 0.025 : 0.02;
+
+                                ctx.save();
+                                ctx.translate(frag.x, frag.y);
+                                ctx.rotate(frag.rotation);
+                                ctx.scale(frag.scale, frag.scale);
+                                ctx.globalAlpha = frag.opacity;
+                                
+                                ctx.beginPath();
+                                ctx.moveTo(frag.vertices[0].x, frag.vertices[0].y);
+                                for (let i = 1; i < frag.vertices.length; i++) {
+                                    ctx.lineTo(frag.vertices[i].x, frag.vertices[i].y);
+                                }
+                                ctx.closePath();
+                                ctx.clip();
+                                
+                                ctx.drawImage(tempCanvas, -frag.x, -frag.y);
+                                
+                                ctx.fillStyle = 'rgba(255, 255, 255, 0.15)';
+                                ctx.fill();
+                                
+                                ctx.strokeStyle = 'rgba(255, 255, 255, 0.8)';
+                                ctx.lineWidth = isMobile ? 2 : 3;
+                                ctx.stroke();
+                                
+                                ctx.restore();
+                            }
+                        });
+
+                        if (!allGone) {
+                            animationId = requestAnimationFrame(animateFragments);
+                        } else {
+                            cancelAnimationFrame(animationId);
+                            showSpotlight();
+                        }
+                    }
+
+                    animateFragments();
+                }
+            }
+
+            // Spotlight Reveal with Anime GIF
+            function showSpotlight() {
+                console.log('💡 Anime eyes opening');
+                spotlightContainer.classList.add('active');
+                
+                // Show anime eyes GIF
+                if (animeEyesBg) {
+                    animeEyesBg.classList.add('active');
+                }
+                
+                // GIF plays automatically (3 seconds duration)
+                // Wait for GIF to finish, then show text
+                setTimeout(() => {
+                    createAnimeParticles();
+                    createImpactLines();
+                }, 3200);
+                
+                // Total duration: GIF (3s) + text reveal (2s) + hold (1s)
+                const spotlightDuration = isMobile ? 5000 : 6000;
+                
+                setTimeout(() => {
+                    console.log('🌟 Starting smooth transition to main website');
+                    
+                    // Stop all animations before fade
+                    if (glassCanvas) {
+                        const ctx = glassCanvas.getContext('2d');
+                        ctx.clearRect(0, 0, glassCanvas.width, glassCanvas.height);
+                    }
+                    
+                    // Pause video if still playing
+                    if (introVideo) {
+                        introVideo.pause();
+                    }
+                    
+                    // Smooth fade out with scale effect
+                    introOverlay.classList.add('fade-out');
+                    
+                    // Remove overlay after transition completes (1000ms)
+                    setTimeout(() => {
+                        console.log('✅ Intro complete - overlay removed');
+                        introOverlay.remove();
+                    }, 1000);
+                }, spotlightDuration);
+            }
+
+            // Create anime-style energy particles
+            function createAnimeParticles() {
+                const particleCount = isMobile ? 15 : 30;
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                
+                for (let i = 0; i < particleCount; i++) {
+                    const particle = document.createElement('div');
+                    particle.className = 'energy-particle';
+                    
+                    const angle = (Math.PI * 2 * i) / particleCount;
+                    const distance = isMobile ? 150 : 250;
+                    const tx = Math.cos(angle) * distance;
+                    const ty = Math.sin(angle) * distance;
+                    
+                    particle.style.left = centerX + 'px';
+                    particle.style.top = centerY + 'px';
+                    particle.style.setProperty('--tx', tx + 'px');
+                    particle.style.setProperty('--ty', ty + 'px');
+                    particle.style.animationDelay = (i * 0.02) + 's';
+                    
+                    spotlightContainer.appendChild(particle);
+                    
+                    setTimeout(() => particle.remove(), 2000);
+                }
+            }
+
+            // Create anime-style impact lines
+            function createImpactLines() {
+                const lineCount = isMobile ? 6 : 10;
+                const centerX = window.innerWidth / 2;
+                const centerY = window.innerHeight / 2;
+                
+                for (let i = 0; i < lineCount; i++) {
+                    const line = document.createElement('div');
+                    line.className = 'impact-line';
+                    
+                    const angle = (360 / lineCount) * i;
+                    line.style.left = centerX + 'px';
+                    line.style.top = centerY + 'px';
+                    line.style.transform = `rotate(${angle}deg)`;
+                    line.style.animationDelay = (i * 0.05) + 's';
+                    
+                    spotlightContainer.appendChild(line);
+                    
+                    setTimeout(() => line.remove(), 800);
+                }
+            }
+
+            // Skip intro with smooth transition
+            const skipIntro = () => {
+                console.log('⏭️ Skipping intro');
+                glassBreakTriggered = true;
+                soundPlayed = true;
+                
+                // Stop all animations
+                if (introVideo) {
+                    introVideo.pause();
+                }
+                if (glassCanvas) {
+                    const ctx = glassCanvas.getContext('2d');
+                    ctx.clearRect(0, 0, glassCanvas.width, glassCanvas.height);
+                }
+                
+                // Smooth fade out
+                introOverlay.classList.add('fade-out');
+                
+                // Remove after transition
+                setTimeout(() => {
+                    introOverlay.remove();
+                }, 1000);
+            };
+
+            skipBtn.addEventListener('click', skipIntro);
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Optimized mouse-based parallax effect (desktop only)
+        if (window.innerWidth > 768) {
+            const bgImage = document.querySelector('.bg-image');
+            let mouseX = 0;
+            let mouseY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            let rafId = null;
+            
+            // Track mouse position
+            document.addEventListener('mousemove', (e) => {
+                mouseX = (e.clientX / window.innerWidth) - 0.5;
+                mouseY = (e.clientY / window.innerHeight) - 0.5;
+            });
+            
+            // Smooth animation loop with requestAnimationFrame
+            function animateParallax() {
+                const maxMove = 40;
+                const targetX = -mouseX * maxMove;
+                const targetY = -mouseY * maxMove;
+                
+                currentX += (targetX - currentX) * 0.1;
+                currentY += (targetY - currentY) * 0.1;
+                
+                if (bgImage) {
+                    bgImage.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.1)`;
+                }
+                
+                rafId = requestAnimationFrame(animateParallax);
+            }
+            
+            animateParallax();
+            
+            // Cleanup on page unload
+            window.addEventListener('beforeunload', () => {
+                if (rafId) cancelAnimationFrame(rafId);
+            });
+        }
+
+        // Optimized event card hover effects (desktop only)
+        if (window.innerWidth > 768) {
+            const cards = document.querySelectorAll('.event-card');
+            cards.forEach(card => {
+                card.addEventListener('mouseenter', () => {
+                    card.style.willChange = 'transform';
+                });
+                
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = '';
+                    card.style.willChange = 'auto';
+                });
+            });
+        }
+
+        // Console easter egg
+        console.log('%c🔥 BHASWARA 2K26 🔥', 'font-size: 50px; color: white; font-weight: bold;');
+        console.log('%c⚡ 19th National Level Technical Fest ⚡', 'font-size: 20px; color: white; font-weight: bold;');
+        console.log('%c🤖 GCET AIML Department 🤖', 'font-size: 18px; color: white;');
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'e' || e.key === 'E') {
+                document.getElementById('events').scrollIntoView({ behavior: 'smooth' });
+            }
+            if (e.key === 'h' || e.key === 'H') {
+                document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+    </script>
+</body>
+</html>

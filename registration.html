@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BHASWARA 2026 - Event Registration | GCET AIML</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Bebas+Neue&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --neon-cyan: #00D9FF;
+            --electric-purple: #9D00FF;
+            --neon-blue: #0066FF;
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(10, 14, 39, 0.95);
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            background: #000;
+            color: white;
+            min-height: 100vh;
+            overflow-x: hidden;
+            cursor: default;
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* Anime Background */
+        .bg-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            overflow: hidden;
+        }
+
+        .bg-image {
+            position: absolute;
+            top: -5%;
+            left: -5%;
+            width: 110%;
+            height: 110%;
+            object-fit: cover;
+            opacity: 1;
+            will-change: transform;
+            transition: transform 0.1s ease-out;
+        }
+
+        @media (max-width: 768px) {
+            .bg-image {
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                object-position: center;
+                will-change: auto;
+                transition: none;
+            }
+        }
+
+        /* Light dark overlay for text readability */
+        .bg-wrapper::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            z-index: 1;
+        }
+
+        .scanlines {
+            display: none;
+        }
+
+        /* Cyber Grid - Removed */
+        .cyber-grid {
+            display: none;
+        }
+
+        .particle {
+            display: none;
+        }
+
+        /* Main Container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        /* Back Button - Glassmorphism */
+        .back-btn {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            padding: 15px 30px;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            z-index: 1000;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .back-btn:hover {
+            background: rgba(0, 0, 0, 0.8);
+            transform: translateX(-5px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Header */
+        .header {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: slideDown 0.8s ease-out;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+
+
+        .header::before {
+            display: none;
+        }
+
+        .logo {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 20px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 5px;
+            background: white;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logo:hover {
+            transform: scale(1.1);
+        }
+
+        .college-name {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8em;
+            font-weight: 900;
+            color: white;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .college-subtitle {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1em;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .event-banner {
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .fest-badge {
+            display: inline-block;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            padding: 15px 40px;
+            font-size: 1.1em;
+            font-weight: 700;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: white;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .event-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 3em;
+            font-weight: 900;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            margin-bottom: 10px;
+            letter-spacing: 3px;
+        }
+
+        .department-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 700;
+            font-size: 1.2em;
+        }
+
+        /* Buttons Section - Glassmorphism */
+        .buttons-section {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 40px 30px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 30px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .section-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 30px;
+            color: white;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.8);
+            position: relative;
+            padding-bottom: 20px;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 3px;
+            background: white;
+            border-radius: 2px;
+            opacity: 0.3;
+        }
+
+        .buttons-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .btn {
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            padding: 25px 30px;
+            font-size: 1.15em;
+            font-weight: 600;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+            position: relative;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out backwards;
+            backdrop-filter: blur(20px);
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .btn::before {
+            display: none;
+        }
+
+        .btn:hover {
+            transform: translateX(10px) scale(1.02);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .btn-content {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-icon {
+            font-size: 2.5em;
+            transition: transform 0.3s ease;
+        }
+
+        .btn:hover .btn-icon {
+            transform: scale(1.1);
+        }
+
+        .btn-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2em;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .btn-arrow {
+            font-size: 2em;
+            transition: transform 0.3s ease;
+            position: relative;
+            z-index: 1;
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .btn:hover .btn-arrow {
+            transform: translateX(10px);
+            color: white;
+        }
+
+        /* Button variants - Removed (using default styles) */
+
+        /* Footer - Glassmorphism */
+        .footer {
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 30px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            display: none;
+        }
+
+        .footer-text {
+            color: rgba(255, 255, 255, 0.8);
+            font-size: 1em;
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-highlight {
+            color: white;
+            font-weight: 900;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 15px;
+            }
+
+            .back-btn {
+                top: 10px;
+                left: 10px;
+                padding: 8px 16px;
+                font-size: 0.85em;
+            }
+
+            .header {
+                padding: 25px 20px;
+                margin-top: 55px;
+            }
+
+            .logo {
+                width: 60px;
+                height: 60px;
+            }
+
+            .college-name {
+                font-size: 1.1em;
+                line-height: 1.3;
+            }
+
+            .college-subtitle {
+                font-size: 0.85em;
+            }
+
+            .event-banner {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            .fest-badge {
+                font-size: 0.7em;
+                padding: 8px 20px;
+                letter-spacing: 0.5px;
+                line-height: 1.4;
+            }
+
+            .event-title {
+                font-size: 2em;
+                letter-spacing: 2px;
+            }
+
+            .department-badge {
+                padding: 10px 20px;
+                font-size: 1em;
+            }
+
+            .buttons-section {
+                padding: 30px 20px;
+            }
+
+            .section-title {
+                font-size: 2em;
+                margin-bottom: 25px;
+            }
+
+            .buttons-container {
+                gap: 15px;
+            }
+
+            .btn {
+                padding: 20px 20px;
+                font-size: 1em;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .btn-content {
+                gap: 15px;
+                width: 100%;
+            }
+
+            .btn-icon {
+                font-size: 2em;
+            }
+
+            .btn-title {
+                font-size: 1em;
+                line-height: 1.3;
+            }
+
+            .btn-arrow {
+                position: absolute;
+                bottom: 20px;
+                right: 20px;
+                font-size: 1.5em;
+            }
+
+            .btn:hover {
+                transform: translateY(-5px) scale(1.01);
+            }
+
+            .footer {
+                padding: 25px 20px;
+            }
+
+            .footer-text {
+                font-size: 0.9em;
+                margin-bottom: 8px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .back-btn {
+                top: 8px;
+                left: 8px;
+                padding: 6px 12px;
+                font-size: 0.75em;
+            }
+
+            .header {
+                padding: 20px 15px;
+                margin-top: 50px;
+            }
+
+            .logo {
+                width: 50px;
+                height: 50px;
+            }
+
+            .college-name {
+                font-size: 0.95em;
+            }
+
+            .college-subtitle {
+                font-size: 0.75em;
+            }
+
+            .fest-badge {
+                font-size: 0.6em;
+                padding: 6px 15px;
+                letter-spacing: 0.3px;
+            }
+
+            .event-title {
+                font-size: 1.6em;
+            }
+
+            .department-badge {
+                font-size: 0.85em;
+                padding: 8px 16px;
+            }
+
+            .buttons-section {
+                padding: 25px 15px;
+            }
+
+            .section-title {
+                font-size: 1.6em;
+            }
+
+            .btn {
+                padding: 18px 18px;
+            }
+
+            .btn-icon {
+                font-size: 1.8em;
+            }
+
+            .btn-title {
+                font-size: 0.95em;
+            }
+
+            .btn-arrow {
+                font-size: 1.3em;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .footer-text {
+                font-size: 0.85em;
+            }
+        }
+
+        @media (max-width: 360px) {
+            .college-name {
+                font-size: 0.85em;
+            }
+
+            .fest-badge {
+                font-size: 0.55em;
+                padding: 5px 12px;
+            }
+
+            .event-title {
+                font-size: 1.4em;
+            }
+
+            .department-badge {
+                font-size: 0.75em;
+                padding: 6px 12px;
+            }
+
+            .btn-title {
+                font-size: 0.9em;
+            }
+        }
+
+            .department-badge {
+                font-size: 0.85em;
+                padding: 8px 16px;
+            }
+
+            .buttons-section {
+                padding: 25px 15px;
+            }
+
+            .section-title {
+                font-size: 1.6em;
+            }
+
+            .btn {
+                padding: 18px 18px;
+            }
+
+            .btn-icon {
+                font-size: 1.8em;
+            }
+
+            .btn-title {
+                font-size: 0.95em;
+            }
+
+            .btn-arrow {
+                font-size: 1.3em;
+                bottom: 15px;
+                right: 15px;
+            }
+
+            .footer-text {
+                font-size: 0.85em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Anime Background -->
+    <div class="bg-wrapper">
+        <img src="background.jpeg" class="bg-image" alt="Anime Background">
+        <div class="scanlines"></div>
+        <div class="cyber-grid"></div>
+        <div id="particles"></div>
+    </div>
+
+    <!-- Back Button -->
+    <a href="index.html" class="back-btn">← Back to Home</a>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <img src="logo.png" alt="GCET" class="logo"
+                 onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22100%22 height=%22100%22%3E%3Ccircle cx=%2250%22 cy=%2250%22 r=%2245%22 fill=%22%2300ffff%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 font-size=%2235%22 fill=%22%23000%22 font-weight=%22bold%22%3EGCET%3C/text%3E%3C/svg%3E'">
+            <h1 class="college-name">GEETHANJALI COLLEGE OF<br>ENGINEERING & TECHNOLOGY</h1>
+            <p class="college-subtitle">Keesara Mandal, Cheeryal Village, Hyderabad, Telangana</p>
+            <div class="event-banner">
+                <div class="fest-badge">🎌 19TH NATIONAL LEVEL TECHNICAL AND MANAGEMENT FEST 🎌</div>
+                <div class="event-title">BHASWARA 2K26</div>
+                <div class="department-badge">🤖 AIML DEPARTMENT 🤖</div>
+            </div>
+        </div>
+
+        <!-- Buttons Section -->
+        <div class="buttons-section">
+            <h2 class="section-title">⚡ EVENT REGISTRATION ⚡</h2>
+            <div class="buttons-container">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScKRQWKH_WeVVInKmSZdzqcSEMAV09XcwghOTJTIglr8qo6Xw/viewform" target="_blank" class="btn btn-1">
+                    <div class="btn-content">
+                        <span class="btn-icon">🎨</span>
+                        <span class="btn-title">Poster Presentation</span>
+                    </div>
+                    <span class="btn-arrow">→</span>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfWZoRWV9Rpeev4DUwbD-tsCrt73TD1I7x4NTdM7U_fTXfzvA/viewform?usp=header" target="_blank" class="btn btn-2">
+                    <div class="btn-content">
+                        <span class="btn-icon">⚖️</span>
+                        <span class="btn-title">The Digital Verdict</span>
+                    </div>
+                    <span class="btn-arrow">→</span>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdXVNniwQLei16AZtEOur-dotu3qbXFgfIgmR7GtBBBLHdvxA/viewform?usp=publish-editor" target="_blank" class="btn btn-3">
+                    <div class="btn-content">
+                        <span class="btn-icon">👻</span>
+                        <span class="btn-title">The Phantom Protocol - Code Edition</span>
+                    </div>
+                    <span class="btn-arrow">→</span>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe-R-ThzutnEu8zIe8dEdLDe53HAmC7iLG4dIg81GIzBfZPjA/viewform?usp=publish-editor" target="_blank" class="btn btn-4">
+                    <div class="btn-content">
+                        <span class="btn-icon">🧠</span>
+                        <span class="btn-title">The Breakout Trilogy</span>
+                    </div>
+                    <span class="btn-arrow">→</span>
+                </a>
+
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSfkiwIFmKty5aEExPbh6KqkwIQ7mb3Jou2uhuQIcqb5KaXogQ/viewform?usp=publish-editor" target="_blank" class="btn btn-5">
+                    <div class="btn-content">
+                        <span class="btn-icon">🔍</span>
+                        <span class="btn-title">Mysteria: The Ultimate Crime Hunt</span>
+                    </div>
+                    <span class="btn-arrow">→</span>
+                </a>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <p class="footer-text">Organized by <span class="footer-highlight">Department of Artificial Intelligence & Machine Learning</span></p>
+            <p class="footer-text">Geethanjali College of Engineering & Technology<br>Keesara Mandal, Cheeryal Village, Hyderabad, Telangana</p>
+            <p class="footer-text" style="margin-top: 15px; font-size: 0.9em;">© 2026 BHASWARA | All Rights Reserved | GCET AIML</p>
+        </div>
+    </div>
+
+    <script>
+        // Mouse-based parallax effect (desktop only)
+        if (window.innerWidth > 768) {
+            const bgImage = document.querySelector('.bg-image');
+            let mouseX = 0;
+            let mouseY = 0;
+            let currentX = 0;
+            let currentY = 0;
+            
+            // Track mouse position
+            document.addEventListener('mousemove', (e) => {
+                // Calculate mouse position as percentage (-1 to 1)
+                mouseX = (e.clientX / window.innerWidth) - 0.5;
+                mouseY = (e.clientY / window.innerHeight) - 0.5;
+            });
+            
+            // Smooth animation loop
+            function animateParallax() {
+                // Maximum movement in pixels (increased for more movement)
+                const maxMove = 50;
+                
+                // Target position (opposite direction for parallax effect)
+                const targetX = -mouseX * maxMove;
+                const targetY = -mouseY * maxMove;
+                
+                // Smooth interpolation (easing)
+                currentX += (targetX - currentX) * 0.1;
+                currentY += (targetY - currentY) * 0.1;
+                
+                // Apply transform
+                if (bgImage) {
+                    bgImage.style.transform = `translate(${currentX}px, ${currentY}px) scale(1.1)`;
+                }
+                
+                requestAnimationFrame(animateParallax);
+            }
+            
+            // Start animation
+            animateParallax();
+        }
+
+        // Console easter egg
+        console.log('%c🔥 BHASWARA 2026 🔥', 'font-size: 40px; color: white; font-weight: bold;');
+        console.log('%c⚡ Event Registration Portal ⚡', 'font-size: 20px; color: white; font-weight: bold;');
+    </script>
+</body>
+</html>
